@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * TIME: 04:52
  * Description:
  */
-public class LinkedList {
+public class LinkedListUtil {
 
     /**
      * Create a linked list from an array

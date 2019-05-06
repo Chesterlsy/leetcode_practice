@@ -1,10 +1,8 @@
 package com.chester.leetcode_practice.problems;
 
-import com.chester.leetcode_practice.leetcodeutils.LinkedList;
+import com.chester.leetcode_practice.leetcodeutils.LinkedListUtil;
 import com.chester.leetcode_practice.leetcodeutils.ListNode;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,11 +58,11 @@ public class P0002AddTwoNumbers {
     }
 
     void testTemplate(int[] a, int[] b, int[] sum) {
-        ListNode l1 = LinkedList.create(a);
-        ListNode l2 = LinkedList.create(b);
-        ListNode expected = LinkedList.create(sum);
+        ListNode l1 = LinkedListUtil.create(a);
+        ListNode l2 = LinkedListUtil.create(b);
+        ListNode expected = LinkedListUtil.create(sum);
         ListNode actual = addTwoNumbers(l1, l2);
-        assertTrue(LinkedList.equalList(expected, actual));
+        assertTrue(LinkedListUtil.equalList(expected, actual));
     }
 
     @Test
