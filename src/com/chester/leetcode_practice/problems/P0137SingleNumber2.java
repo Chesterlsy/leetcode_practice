@@ -7,4 +7,7 @@ package com.chester.leetcode_practice.problems;
  * Description:
  */
 public class P0137SingleNumber2 {
+    public int singleNumber2(int[] nums) {
+
+    }
 }

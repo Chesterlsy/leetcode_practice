@@ -2,7 +2,9 @@ package com.chester.leetcode_practice.problems;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +57,7 @@ class P0001TwoSum {
     /**
      * Approach 2: Two-pass Hash Table
      *
-     *To improve our run time complexity, we need a more efficient way to check if the complement exists in the array.
+     * To improve our run time complexity, we need a more efficient way to check if the complement exists in the array.
      * If the complement exists, we need to look up its index.
      * What is the best way to maintain a mapping of each element in the array to its index? A hash table.
      *
@@ -114,6 +116,37 @@ class P0001TwoSum {
         return null;
     }
 
+    /**
+     * n integers add up to target. No duplicates.
+     * @param nums distinct integer array
+     * @param n
+     * @param target
+     * @return
+     */
+    static List<List<Integer>> nSumBacktrack(int[] nums, int n, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        int remain = target;
+        backtrack(nums, n, target, new ArrayList<>(), result);
+        return result;
+    }
+
+    static void backtrack(int[] nums, int n, int remain, List<Integer> tempList, List<List<Integer>> list) {
+        if (tempList.size() == n) {
+            if (remain == 0) {
+                list.add(new ArrayList<>(tempList));
+            } else {
+                return;
+            }
+        } else {
+            for (int num : nums) {
+                if (!tempList.contains(num)) {
+                    tempList.add(num);
+                    backtrack(nums, n, remain - num, tempList, list);
+                    tempList.remove(tempList.size() - 1);
+                }
+            }
+        }
+    }
 
     @Test
     void test1() {

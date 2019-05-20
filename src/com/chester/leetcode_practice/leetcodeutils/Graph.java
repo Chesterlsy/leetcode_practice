@@ -1,5 +1,6 @@
 package com.chester.leetcode_practice.leetcodeutils;
 
+
 /**
  * Author: Chester
  * Date: 05/07/2019
@@ -7,4 +8,5 @@ package com.chester.leetcode_practice.leetcodeutils;
  * Description:
  */
 public class Graph {
+
 }

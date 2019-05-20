@@ -7,4 +7,12 @@ package com.chester.leetcode_practice.leetcodeutils;
  * Description:
  */
 public class TreeNode {
+
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+
+    public TreeNode(int x) {
+        val = x;
+    }
 }
