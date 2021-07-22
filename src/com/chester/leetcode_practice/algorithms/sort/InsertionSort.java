@@ -12,6 +12,14 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T>  {
 
     }
 
+    /**
+     * Time average = O(n^2)
+     * Time worst = O(n^2) when reversely sorted
+     * Time best = O(n) when already sorted
+     * Auxiliary Space = O(1)
+     * In-Place
+     * Stable
+     */
     @Override
     public void sort(int[] data) {
         int n = data.length;

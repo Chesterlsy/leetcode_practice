@@ -14,6 +14,12 @@ public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
 
     }
 
+    /**
+     * Time = O(n^2)
+     * Space = O(1)
+     * In-Place
+     * Unstable
+     */
     @Override
     public void sort(int[] data) {
         int n = data.length;
