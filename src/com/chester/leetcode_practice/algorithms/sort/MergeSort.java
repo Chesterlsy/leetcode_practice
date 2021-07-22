@@ -28,7 +28,13 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
         }
     }
 
-    private static void merge(int[] data, int low, int mid, int high) {
+    /**
+     * Time Complexity = O(nLogn)
+     * Auxiliary Space = O(n)
+     * Not-In-Place
+     * Stable
+     */
+    private static void merge1(int[] data, int low, int mid, int high) {
         int n1 = mid - low + 1;
         int n2 = high - mid;
         int[] a1 = new int[n1];
@@ -55,7 +61,7 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
         }
     }
 
-    private static void merge2(int[] data, int low, int mid, int high) {
+    private static void merge1Better(int[] data, int low, int mid, int high) {
         int n1 = mid - low + 1;
         int n2 = high - mid;
         int[] a1 = new int[n1];
@@ -84,10 +90,6 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
     /**
      * In place
-     * @param data
-     * @param low
-     * @param mid
-     * @param high
      */
     private static void merge3(int[] data, int low, int mid, int high) {
         int i = low, j = mid + 1;

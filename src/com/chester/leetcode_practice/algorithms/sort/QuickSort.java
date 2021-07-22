@@ -27,6 +27,14 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
         }
     }
 
+    /**
+     * Time average = O(nLogn)
+     * Time worst = O(n^2) when every time pick largest value as pivot and already sorted
+     * Time best = O(nLogn) when every time pick middle value as pivot
+     * Space = O(1)
+     * In-Place
+     * Unstable
+     */
     private static int partition(int[] data, int low, int high) {
         int pivot = data[high];
         int i = low;

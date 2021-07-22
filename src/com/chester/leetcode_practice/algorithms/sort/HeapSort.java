@@ -14,11 +14,17 @@ public class HeapSort<T extends Comparable<T>> implements Sort<T> {
 
     }
 
+    /**
+     * Time Complexity = O(nLogn)
+     * Auxiliary Space = O(1)
+     * In-Place
+     * Unstable
+     */
     @Override
     public void sort(int[] data) {
         int n = data.length;
 
-        for (int i = parent(n - 1); i >= 0; i--) {
+        for (int i = parent(n - 1); i >= 0; i--) { // O(n)
             heapify(data, n, i);
         }
 
