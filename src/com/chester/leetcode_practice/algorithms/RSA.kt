@@ -14,8 +14,13 @@ import javax.print.attribute.standard.NumberUp
 import javax.security.auth.kerberos.EncryptionKey
 import kotlin.test.assertEquals
 
-class RSA() {
+class RSA {
 
+    /*
+    p, q large prime
+    e < phi
+    0 <= m < n
+     */
     lateinit var n: BigInteger
     lateinit var phi: BigInteger
     lateinit var e: BigInteger
@@ -64,12 +69,12 @@ class RSA() {
 
     @Test
     fun test1() {
-        test(BigInteger.probablePrime(1024, Random()), BigInteger.probablePrime(1024, Random()), BigInteger(1500, Random()))
+        test(BigInteger.probablePrime(1024, Random()), BigInteger.probablePrime(1024, Random()), BigInteger(1900, Random()))
     }
 
     @Test
     fun test2() {
-        test(Integer.valueOf(61).toBigInteger(), Integer.valueOf(53).toBigInteger(), Integer.valueOf(65).toBigInteger())
+        test(Integer.valueOf(5).toBigInteger(), Integer.valueOf(5).toBigInteger(), Integer.valueOf(24).toBigInteger())
     }
 
 }
