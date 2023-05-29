@@ -2,16 +2,12 @@
  * Copyright (c) 2023. Chester
  */
 
-package com.chester.leetcode_practice.algorithms
+package com.chester.leetcode_practice.algorithms.numbertheory
 
 import com.chester.leetcode_practice.leetcodeutils.NumberUtil
 import org.junit.jupiter.api.Test
 import java.math.BigInteger
-import java.security.KeyFactory
-import java.security.KeyPairGenerator
 import java.util.*
-import javax.print.attribute.standard.NumberUp
-import javax.security.auth.kerberos.EncryptionKey
 import kotlin.test.assertEquals
 
 class RSA {
