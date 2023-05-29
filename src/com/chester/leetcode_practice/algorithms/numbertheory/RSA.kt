@@ -40,6 +40,7 @@ class RSA {
         d = (k.toBigInteger() * phi + BigInteger.ONE) / e
 //        d = BigInteger.ONE.mod(phi) / e
     }
+
     fun encrypt(message: BigInteger, n: BigInteger, e: BigInteger): BigInteger {
         return message.modPow(e, n)
     }
@@ -52,20 +53,26 @@ class RSA {
         init(p, q)
         val message = m
         val eMessage = encrypt(message, n, e)
-        println("p = $p\n" +
-                "q = $q\n" +
-                "n = $n\n" +
-                "phi = $phi\n" +
-                "e = $e\n" +
-                "d = $d\n" +
-                "m = $m\n" +
-                "eM = $eMessage")
+        println(
+            "p = $p\n" +
+                    "q = $q\n" +
+                    "n = $n\n" +
+                    "phi = $phi\n" +
+                    "e = $e\n" +
+                    "d = $d\n" +
+                    "m = $m\n" +
+                    "eM = $eMessage"
+        )
         assertEquals(decrypt(eMessage, n, d), message)
     }
 
     @Test
     fun test1() {
-        test(BigInteger.probablePrime(1024, Random()), BigInteger.probablePrime(1024, Random()), BigInteger(1900, Random()))
+        test(
+            BigInteger.probablePrime(1024, Random()),
+            BigInteger.probablePrime(1024, Random()),
+            BigInteger(1900, Random())
+        )
     }
 
     @Test
