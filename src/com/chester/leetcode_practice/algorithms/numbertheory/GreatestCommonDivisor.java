@@ -16,8 +16,8 @@ class GreatestCommonDivisor {
         if (a == 0 && b == 0) {
             throw new ArithmeticException();
         }
-        int x = a;
-        int y = b;
+        int x = Math.abs(a);
+        int y = Math.abs(b);
         while (y != 0) {
             int x1 = y;
             y = x % y;
@@ -66,7 +66,8 @@ class GreatestCommonDivisor {
 
     @Test
     public void testGCDNegativeNumbers() {
-        int result = gcd(-36, -48);
-        assertEquals(12, result);
+        assertEquals(12, gcd(-36, -48));
+        assertEquals(12, gcd(-36, 48));
+        assertEquals(12, gcd(36, -48));
     }
 }
