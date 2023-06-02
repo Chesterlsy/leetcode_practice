@@ -10,35 +10,49 @@ import java.math.BigInteger
 import java.util.*
 import kotlin.test.assertEquals
 
+/**
+ * choose p, q large prime
+ *
+ * n = p*q
+ *
+ * phi = (p-1)*(q-1)
+ *
+ * choose e < phi and gcd(e, phi) = 1
+ *
+ * e*d = 1 (mod phi)
+ *
+ * choose 0 <= m < n
+ *
+ * m' = m ^ e (mod n)
+ *
+ * m = m' ^ d (mod n)
+ */
 class RSA {
 
-    /*
-    p, q large prime
-    e < phi
-    0 <= m < n
-     */
+
     lateinit var n: BigInteger
     lateinit var phi: BigInteger
     lateinit var e: BigInteger
     lateinit var d: BigInteger
 
     fun init(p: BigInteger, q: BigInteger) {
-        e = BigInteger.TWO
         n = p * q
         phi = (p - BigInteger.ONE) * (q - BigInteger.ONE)
+
+        e = (p + q) / BigInteger.TWO
         while (e < phi) {
             if (NumberUtil.gcd(e, phi) == BigInteger.ONE) break
-            e += BigInteger.ONE
+            e++
         }
-//        e = Integer.valueOf(11).toBigInteger()
-        var k = 0
+
         //  e*d | 1 (mod phi)
         //  e * d - 1 = k * phi
-        while ((k.toBigInteger() * phi + BigInteger.ONE).remainder(e) != BigInteger.ZERO) {
-            k++
-        }
-        d = (k.toBigInteger() * phi + BigInteger.ONE) / e
-//        d = BigInteger.ONE.mod(phi) / e
+//        var k = 0
+//        while ((k.toBigInteger() * phi + BigInteger.ONE).remainder(e) != BigInteger.ZERO) {
+//            k++
+//        }
+//        d = (k.toBigInteger() * phi + BigInteger.ONE) / e
+        d = PulverizerBigInteger.pulverizerPositiveS(e, phi)[0]
     }
 
     fun encrypt(message: BigInteger, n: BigInteger, e: BigInteger): BigInteger {
@@ -51,8 +65,7 @@ class RSA {
 
     fun test(p: BigInteger, q: BigInteger, m: BigInteger) {
         init(p, q)
-        val message = m
-        val eMessage = encrypt(message, n, e)
+        val eMessage = encrypt(m, n, e)
         println(
             "p = $p\n" +
                     "q = $q\n" +
@@ -63,7 +76,7 @@ class RSA {
                     "m = $m\n" +
                     "eM = $eMessage"
         )
-        assertEquals(decrypt(eMessage, n, d), message)
+        assertEquals(decrypt(eMessage, n, d), m)
     }
 
     @Test
