@@ -36,8 +36,11 @@ class PulverizerBigInteger {
             // x < 0
             // x < 0
             if (result[0] * a + result[1] * b < BigInteger.ZERO) {
-                result[0] = -result[0]
-                result[1] = -result[1]
+                result.forEach {
+                    -it
+                }
+//                result[0] = -result[0]
+//                result[1] = -result[1]
             }
             return result
         }
