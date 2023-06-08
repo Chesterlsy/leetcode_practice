@@ -1,74 +1,105 @@
+/*
+ * Copyright (c) 2023. Chester
+ */
+
 package com.chester.leetcode_practice.datastructures.graph;
 
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
 /**
  * Author: Chester
  * Date: 05/07/2019
- * TIME: 23:41
+ * TIME: 23:51
  * Description:
  */
-public class Graph {
+interface Graph<V, E> {
 
-    private int vertices;
-    private LinkedList<Integer>[] adj;
+    interface Vertex<V> {
+        V getElement();
 
-    public Graph(int vertices) {
-        this.vertices = vertices;
-        adj = new LinkedList[vertices];
-        for (int i = 0; i < vertices; i++) {
-            adj[i] = new LinkedList<>();
-        }
+        void setElement(V vx);
+
+//        Iterable<Edge<?>> getOut();
+//        Iterable<Edge<?>> getIn();
     }
 
-    public void addEdge(int v, int w) {
-        adj[v].add(w);
+    interface Edge<E> {
+        E getElement();
+
+        void setElement(E ex);
+//        Vertex<?> getOut();
+//
+//        Vertex<?> getIn();
     }
 
-    public void breadthFirstSearch(int v) {
-        boolean[] visited = new boolean[vertices];
-        Queue<Integer> queue = new LinkedList<>();
+    /**
+     *
+     * @return an iteration of all the vertices of the graph
+     */
+    Iterable<Vertex<V>> vertices();
 
-        visited[v] = true;
-        queue.offer(v);
+    /**
+     *
+     * @return the number of vertices of the graph
+     */
+    int numVertices();
 
-        while (!queue.isEmpty()) {
-            int s = queue.poll();
-            System.out.println(s + " ");
-            for (int i = 0; i < adj[s].size(); i++) {
-                int n = adj[s].get(i);
-                if (!visited[n]) {
-                    visited[n] = true;
-                    queue.offer(n);
-                }
-            }
-        }
-    }
+    /**
+     *
+     * @return an iteration of all the edges of the graph
+     */
+    Iterable<Edge<E>> Edges();
 
-    public void depthFirstSearch(int v) {
-        boolean[] visited = new boolean[vertices];
-        Stack<Integer> stack = new Stack<>();
+    /**
+     *
+     * @return the number of edges of the graph
+     */
+    int numEdges();
 
-        stack.push(v);
+    /**
+     * Returns the edge from vertex u to vertex v, if one exists;
+     * otherwise return null. For an undirected graph, there is no
+     * difference between getEdge(u, v) and getEdge(v, u).
+     * @param u
+     * @param v
+     * @return the edge from vertex u to vertex v, if one exists; otherwise return null
+     */
+    Edge<E> getEdge(Vertex<V> u, Vertex<V> v);
 
-        while (!stack.empty()) {
-            int s = stack.pop();
+    /**
+     * If the graph is directed, the first vertex is the origin
+     * and the second is the destination.
+     * @param e the edge
+     * @return an array containing the two endpoint vertices of edge e.
+     */
+    Vertex<V>[] endVertices(Edge<E> e);
 
-            if (!visited[s]) {
-                System.out.println(s + " ");
-                visited[s] = true;
-            }
+    /**
+     * Creates and returns a new Vertex storing element vx.
+     * @param vx element to be stored in added vertex
+     * @return vertex added
+     */
+    Vertex<V> insertVertex(V vx);
 
-            for (int i = 0; i < adj[s].size(); i++) {
-                int n = adj[s].get(i);
-                if (!visited[n]) {
-                    stack.push(n);
-                }
-            }
-        }
-    }
+    /**
+     * Creates and returns a new Edge from vertex u to vertex v,
+     * storing element ex; an error occurs if there already exists an
+     * edge from u to v.
+     * @param ex
+     * @param u
+     * @param v
+     * @return edge added
+     */
+    Edge<E> insertEdge(E ex, Vertex<V> u, Vertex<V> v);
 
+    /**
+     * Removes vertex v and all its incident edges from the graph
+     * @param v
+     */
+    void removeVertex(Vertex<V> v);
+
+    /**
+     * Removes edge e from the graph
+     * @param e
+     */
+    void removeEdge(Edge<E> e);
 }
