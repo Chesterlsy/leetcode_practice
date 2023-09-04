@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 class AdjacencyListGraph<V, E> implements Graph<V, E> {
 
-    private boolean isDirected;
+    private final boolean isDirected;
     private ArrayList<Vertex<V>> vertices;
 
 //    private ArrayList<Edge<E>> edges;
